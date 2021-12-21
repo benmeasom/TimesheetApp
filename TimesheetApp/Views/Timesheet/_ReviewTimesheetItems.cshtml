@@ -1,0 +1,35 @@
+﻿@model List<DataObjects.DTO.ReviewTimesheetItems>
+@if (Model.Any())
+{
+    foreach (var item in Model)
+    {
+        <tr>
+            <td class="text-center text-hover-primary fs-6">
+                @item.Date.ToString("dd-MM-yyyy")
+            </td>
+            <td class="text-center text-hover-primary fs-6">
+                @item.ActivityTypeName
+            </td>
+            <td class="text-center text-hover-primary fs-6">
+                @item.ActivityName
+            </td>
+            <td class="text-center text-hover-primary fs-6">
+                @item.Hours
+            </td>
+            <td class="text-center text-hover-primary fs-6">
+                @item.Minutes
+            </td>
+            <td class="text-center text-hover-primary fs-6">
+                @item.Notes
+            </td>
+        </tr>
+    }
+}
+else
+{
+    <tr>
+        <td class="text-center text-dark fw-bolder text-hover-primary fs-6" colspan="6">
+            No Record Found
+        </td>
+    </tr>
+}

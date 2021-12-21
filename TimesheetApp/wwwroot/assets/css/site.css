@@ -1,0 +1,91 @@
+.error-msg {
+    color: #cc0000;
+    font-size: 10px;
+    /* margin-top: 0px;
+    position: absolute;
+    left: 0px;*/
+    bottom: -12px;
+    line-height: 10px;
+}
+
+.flot-left {
+    float: left !important;
+}
+
+.flot-right {
+    float: right !important;
+}
+
+
+.timesheet-added {
+    position: relative;
+    width: 60px;
+    height: 50px;
+}
+
+    .timesheet-added img {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+    }
+
+.table.timesheetReviewTable > :not(caption) > * > * {
+    padding: .50rem .50rem;
+}
+
+.timesheetReviewTable .btn:not(.btn-outline):not(.btn-dashed):not(.border-hover):not(.border-active):not(.btn-flush):not(.btn-icon) {
+    padding: calc(0.5rem + 1px) calc(1.5rem + 1px);
+}
+
+.timesheetReviewItemTable.table.gy-4 td, .table.gy-4 th {
+    padding: .50rem .50rem;
+}
+
+
+.aside {
+    background-color: #ffffff !important;
+}
+
+.aside-menu .menu .menu-item .menu-link .menu-title {
+    color: black;
+}
+
+.aside-menu .menu .menu-item .menu-link.active {
+    background-color: #1e1e2d !important;
+}
+
+.aside .aside-footer .btn-custom {
+    color: black;
+}
+
+.aside-menu .menu .menu-item .menu-link:hover:not(.disabled):not(.active) .menu-title, .aside-menu .menu .menu-item.hover > .menu-link:not(.disabled):not(.active) .menu-title {
+    color: black;
+}
+
+.aside-menu .menu .menu-item.here > .menu-link .menu-title, .aside-menu .menu .menu-item.show > .menu-link .menu-title {
+    color: black;
+}
+
+.aside-menu .menu .menu-item .menu-link:hover:not(.disabled):not(.active) .menu-icon .svg-icon svg [fill]:not(.permanent):not(g), .aside-menu .menu .menu-item.hover > .menu-link:not(.disabled):not(.active) .menu-icon .svg-icon svg [fill]:not(.permanent):not(g) {
+    fill: black;
+}
+
+.aside-menu .menu .menu-item.here > .menu-link .menu-icon .svg-icon svg [fill]:not(.permanent):not(g), .aside-menu .menu .menu-item.show > .menu-link .menu-icon .svg-icon svg [fill]:not(.permanent):not(g) {
+    fill: black;
+}
+
+.aside-menu .menu .menu-item .menu-link:hover:not(.disabled):not(.active) .menu-bullet .bullet, .aside-menu .menu .menu-item.hover > .menu-link:not(.disabled):not(.active) .menu-bullet .bullet {
+    background-color: #4a4b68;
+}
+
+.aside .aside-footer .btn-custom.active, .aside .aside-footer .btn-custom.show, .aside .aside-footer .btn-custom:active:not(.btn-active), .aside .aside-footer .btn-custom:focus:not(.btn-active), .aside .aside-footer .btn-custom:hover:not(.btn-active), .btn-check:active + .aside .aside-footer .btn-custom, .btn-check:checked + .aside .aside-footer .btn-custom, .show > .aside .aside-footer .btn-custom {
+    color: black;
+}
+
+.custom-datatable.table.gy-4 td, .table.gy-4 th {
+    padding-top: 0.3rem !important;
+    padding-bottom: 0.3rem !important;
+}

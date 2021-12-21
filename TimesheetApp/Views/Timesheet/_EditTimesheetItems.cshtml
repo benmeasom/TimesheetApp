@@ -1,0 +1,109 @@
+﻿@model DataObjects.DTO.TimesheetItemsDTO
+
+@if (Model != null && Model.ActivityId.HasValue)
+{
+
+
+    <div class="modal-content rounded">
+        <!--begin::Modal header-->
+        <div class="modal-header pb-0 border-0 justify-content-end">
+            <!--begin::Close-->
+            <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+                <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                <span class="svg-icon svg-icon-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="black" />
+                        <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="black" />
+                    </svg>
+                </span>
+                <!--end::Svg Icon-->
+            </div>
+            <!--end::Close-->
+        </div>
+        <!--begin::Modal header-->
+        <!--begin::Modal body-->
+        <div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
+            <!--begin:Form-->
+            <!--begin::Heading-->
+            <div class="mb-13 text-center">
+                <!--begin::Title-->
+                <h1 class="mb-3">Update Timesheet Item</h1>
+                <!--end::Title-->
+            </div>
+            <input type="text" class="form-control form-control-solid" id="TimesheetItemIndex" hidden />
+            <!--end::Heading-->
+            <!--begin::Input group-->
+            <div class="row g-9 mb-8">
+                <!--begin::Col-->
+                <div class="col-md-12 fv-row">
+                    <label class="required fs-6 fw-bold mb-2">Activity Type</label>
+                    @Html.DropDownListFor(a => a.ActivityTypeId, new SelectList(ViewBag.ActivityTypeList, "Value", "Text"), new { @class = "form-select form-select-solid editActivityType", placeholder = "", data_control = "select2", @onchange = "getActivityTypeForEdit(this)" })
+                    @Html.ValidationMessageFor(model => model.ActivityTypeId, null, new { @class = "error-msg" })
+
+                </div>
+                <!--end::Col-->
+            </div>
+            <!--end::Input group-->
+            <!--begin::Input group-->
+            <div class="row g-9 mb-8">
+                <!--begin::Col-->
+                <div class="col-md-12 fv-row">
+                    <label class="required fs-6 fw-bold mb-2">Activity</label>
+                    @Html.DropDownListFor(a => a.ActivityId, new SelectList(ViewBag.ActivityList, "Value", "Text"), new { @class = "form-select form-select-solid editActivityTypeId", placeholder = "", data_control = "select2" })
+                    @Html.ValidationMessageFor(model => model.ActivityId, null, new { @class = "error-msg" })
+
+                </div>
+                <!--end::Col-->
+            </div>
+            <!--end::Input group-->
+            <!--begin::Input group-->
+            <div class="d-flex flex-column mb-8 fv-row">
+                <!--begin::Label-->
+                <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+                    <span class="required">Hours</span>
+                </label>
+                <!--end::Label-->
+                @Html.DropDownListFor(a => a.Hours, new SelectList(ViewBag.HoursList, "Value", "Text"), new { @class = "itemHours form-select form-select-solid editHours", placeholder = "Select one", data_control = "select2" })
+                @Html.ValidationMessageFor(model => model.Hours, null, new { @class = "error-msg" })
+
+            </div>
+            <!--end::Input group-->
+            <!--begin::Input group-->
+            <div class="d-flex flex-column mb-8 fv-row">
+                <!--begin::Label-->
+                <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+                    <span class="required">Minutes</span>
+                </label>
+                <!--end::Label-->
+                @Html.DropDownListFor(a => a.Minutes, new SelectList(ViewBag.MinutesList, "Value", "Text"), new { @class = "itemHours form-select form-select-solid editMinutes", placeholder = "Select one", data_control = "select2" })
+                @Html.ValidationMessageFor(model => model.Minutes, null, new { @class = "error-msg" })
+
+            </div>
+            <!--end::Input group-->
+            <!--begin::Input group-->
+            <div class="d-flex flex-column mb-8 fv-row">
+                <!--begin::Label-->
+                <label class="d-flex align-items-center fs-6 fw-bold mb-2">
+                    <span class="required">Notes</span>
+                </label>
+                <!--end::Label-->
+                @*<input type="text" class="form-control form-control-solid" id="TimesheetNotes" />*@
+                @Html.TextAreaFor(a => a.Notes, new { @class = "form-control editNotes" })
+                @Html.ValidationMessageFor(model => model.Notes, null, new { @class = "error-msg" })
+
+            </div>
+            <!--end::Input group-->
+            <!--begin::Actions-->
+            <div class="text-center">
+                <button type="reset" id="cancelEditTimesheetItem" class="btn btn-light me-3" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" onclick="updateTimesheetItem()">
+                    <span class="indicator-label">Update</span>
+                </button>
+            </div>
+            <!--end::Actions-->
+            <!--end:Form-->
+        </div>
+        <!--end::Modal body-->
+    </div>
+    @Html.HiddenFor(s => s.Index)
+}

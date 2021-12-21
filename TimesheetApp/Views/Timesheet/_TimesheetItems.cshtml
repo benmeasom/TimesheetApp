@@ -1,0 +1,124 @@
+﻿@model DataObjects.DTO.TimesheetDTO
+
+@for (int index = 0; index < Model.TimesheetItems.Count; index++)
+{
+    @if (Model.TimesheetItems[index].Saved == 1)
+    {
+        <tr>
+            @Html.HiddenFor(f => f.TimesheetItems[index].TimesheetId)
+            @Html.HiddenFor(f => f.TimesheetItems[index].TimesheetItemsId)
+            @Html.HiddenFor(f => f.TimesheetItems[index].Saved)
+            <td style="width: 180px !important; min-width :180px !important ">
+                @Html.DropDownListFor(a => a.TimesheetItems[index].ActivityTypeId, new SelectList(ViewBag.ActivityTypeList, "Value", "Text"), new { @class = "activityTypeId form-select form-select-solid", placeholder = "Select one", data_control = "select2", @onchange = "getActivityType(this)", disabled = "disabled" })
+                @Html.HiddenFor(a => a.TimesheetItems[index].ActivityTypeId)
+
+            </td>
+
+            <td style="width: 180px !important; min-width: 180px !important ">
+                @Html.DropDownListFor(a => a.TimesheetItems[index].ActivityId, new SelectList(ViewBag.EmptyActivityList, "Value", "Text"), new { @class = "form-select form-select-solid", placeholder = "Select one", data_control = "select2", disabled = "disabled" })
+                @Html.HiddenFor(a => a.TimesheetItems[index].ActivityId)
+
+            </td>
+            <td style="width:80px!important;min-width:80px!important">
+                @Html.DropDownListFor(a => a.TimesheetItems[index].Hours, new SelectList(ViewBag.HoursList, "Value", "Text"), new { @class = "itemHours form-select form-select-solid", placeholder = "Select one", data_control = "select2", disabled = "disabled" })
+                @Html.HiddenFor(a => a.TimesheetItems[index].Hours)
+
+
+            </td>
+            <td style="width:80px!important;min-width:80px!important">
+                @Html.DropDownListFor(a => a.TimesheetItems[index].Minutes, new SelectList(ViewBag.MinutesList, "Value", "Text"), new { @class = "itemMinutes form-select form-select-solid", placeholder = "Select one", data_control = "select2", disabled = "disabled" })
+                @Html.HiddenFor(a => a.TimesheetItems[index].Minutes)
+
+
+            </td>
+            <td style="width: 150px !important; min-width :150px !important ">
+                @Html.TextAreaFor(t => t.TimesheetItems[index].Notes, new { @class = "form-control", @readonly = "readonly" })
+                @*@Html.HiddenFor(a => a.TimesheetItems[index].Notes)*@
+            </td>
+            <td style="width: 310px !important; min-width :310px !important ">
+
+                @if (Model.TimesheetItems.Count > 1)
+                {
+                    <button type="button" id="Edit" class="btn btn-success" data-id="@index" data-bs-toggle="modal"
+                            data-bs-target="#editTimesheetItem" onclick="GetTimesheetItemForEdit('@index')">
+                        Edit
+                    </button>
+                    <button type="button" id="delete" class="btn btn-danger" data-id="@index">Delete</button>
+                    if (index != Model.TimesheetItems.Count - 1)
+                    {
+                        <button type="button" class="btn timesheet-added" background-repeat: no-repeat;">
+                            <img src="~/success-green-check-mark.svg" />
+                        </button>
+                    }
+                }
+
+                @if (index == Model.TimesheetItems.Count - 1)
+                {
+                    @if (Model.TimesheetItems.Count == 1)
+                    {
+                        <button type="button" id="Edit" class="btn btn-success" data-id="@index" data-bs-toggle="modal"
+                                data-bs-target="#editTimesheetItem" onclick="GetTimesheetItemForEdit('@index')">
+                            Edit
+                        </button>
+                    }
+                    <button type="button" id="add" class="btn btn-primary" data-id="@index">Add</button>
+
+                    <button type="button" class="btn timesheet-added" background-repeat: no-repeat;">
+                        <img src="~/success-green-check-mark.svg" />
+                    </button>
+
+                }
+
+            </td>
+        </tr>
+    }
+    else
+    {
+        <tr>
+            @Html.Hidden("None")
+            <td style="width: 200px !important; min-width :200px !important ">
+                @Html.DropDownListFor(a => a.TimesheetItems[index].ActivityTypeId, new SelectList(ViewBag.ActivityTypeList, "Value", "Text"), new { @class = "activityTypeId form-select form-select-solid", placeholder = "Select one", data_control = "select2", @onchange = "getActivityType(this)" })
+                @Html.ValidationMessageFor(model => model.TimesheetItems[index].ActivityTypeId, null, new { @class = "error-msg" })
+            </td>
+
+            <td style="width: 200px !important; min-width :200px !important ">
+                @Html.DropDownListFor(a => a.TimesheetItems[index].ActivityId, new SelectList(ViewBag.EmptyActivityList, "Value", "Text"), new { @class = "form-select form-select-solid", placeholder = "Select one", data_control = "select2" })
+                @Html.ValidationMessageFor(model => model.TimesheetItems[index].ActivityId, null, new { @class = "error-msg" })
+            </td>
+
+            <td style="width:80px!important;min-width:80px!important">
+                @Html.DropDownListFor(a => a.TimesheetItems[index].Hours, new SelectList(ViewBag.HoursList, "Value", "Text"), new { @class = "itemHours form-select form-select-solid", placeholder = "Select one", data_control = "select2" })
+                @Html.ValidationMessageFor(model => model.TimesheetItems[index].Hours, null, new { @class = "error-msg" })
+
+            </td>
+            <td style="width:80px!important;min-width:80px!important">
+                @Html.DropDownListFor(a => a.TimesheetItems[index].Minutes, new SelectList(ViewBag.MinutesList, "Value", "Text"), new { @class = "itemMinutes form-select form-select-solid", placeholder = "Select one", data_control = "select2" })
+                @Html.ValidationMessageFor(model => model.TimesheetItems[index].Minutes, null, new { @class = "error-msg" })
+
+            </td>
+            <td style="width: 200px !important; min-width :200px !important ">
+                @Html.TextAreaFor(t => t.TimesheetItems[index].Notes, new { @class = "form-control" })
+            </td>
+
+            <td style="width:200px!important;min-width:200px!important">
+
+                @*@if (Model.TimesheetItems.Count > 1)
+                    {
+                        <button type="button" id="delete" class="btn btn-danger" data-id="@index">Delete</button>
+                    }*@
+
+                @if (index == Model.TimesheetItems.Count - 1)
+                {
+                    <button type="button" id="add" class="btn btn-primary" data-id="@index">Add</button>
+                }
+
+            </td>
+        </tr>
+    }
+}
+
+<script>
+    var pwObj = @Html.Raw(Json.Serialize(Model));
+    var pwList = @Html.Raw(Json.Serialize(Model.TimesheetItems));
+    var isTimeListOver = '@ViewBag.TimeLimitOver';
+</script>
